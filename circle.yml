@@ -1,15 +1,18 @@
+machine:
+  environment:
+    FILENAME_UBUNTU_DEFAULT_ISO: ubuntu-14.04.4-desktop-amd64.iso
 dependencies:
   pre:
     - sudo apt-get update -qq
     - sudo apt-get install -y uck
-    - wget -q http://releases.ubuntu.com/14.04/ubuntu-14.04.3-desktop-amd64.iso -O /tmp/ubuntu-14.04.3-desktop-amd64.iso
+    - wget -q http://releases.ubuntu.com/14.04/$FILENAME_UBUNTU_DEFAULT_ISO -O /tmp/$FILENAME_UBUNTU_DEFAULT_ISO
 general:
   artifacts:
     - "tork-ubuntu-ros-14.04-amd64-*.iso"
 test:
   override:
     - sudo apt-get install p7zip-full
-    - 7z x /tmp/ubuntu-14.04.3-desktop-amd64.iso -o/tmp/iso
+    - 7z x /tmp/$FILENAME_UBUNTU_DEFAULT_ISO -o/tmp/iso
     - mkdir -p ~/tmp/remaster-iso
     - ls -al ~/tmp/
     - sudo mount --bind /tmp/iso ~/tmp/remaster-iso
