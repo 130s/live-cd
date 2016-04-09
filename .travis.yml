@@ -4,8 +4,6 @@ dist: trusty
 language: generic
 compiler:
   - gcc
-#addons:
-#  artifacts: true
 notifications:
   email:
     on_success: always
@@ -27,4 +25,8 @@ script:
 #  - ./00-create-cd.sh  --local-repo --rosdistro indigo
 after_script:
   - export DISPLAY=:0
-  - sudo ./00-check-cd.sh tork-ubuntu-ros-14.04-amd64-*.iso
+#  - ./00-check-cd.sh tork-ubuntu-ros-14.04-amd64-*.iso  # Temporarily disabled since test fails on qemu.
+addons:
+  artifacts:
+    bucket: live-cd
+    s3_region: "us-west-1"  # defaults to "us-east-1"
