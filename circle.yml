@@ -4,14 +4,14 @@ machine:
 dependencies:
   pre:
     - sudo apt-get update -qq
-    - sudo apt-get install -y qemu-system-x86 uck
-    - wget -q http://releases.ubuntu.com/14.04/$FILENAME_UBUNTU_DEFAULT_ISO -O /tmp/$FILENAME_UBUNTU_DEFAULT_ISO
+    - sudo apt-get install -qq -y qemu-system-x86 uck
+    - sudo apt-get install -qq -y p7zip-full
+    - wget http://releases.ubuntu.com/14.04/$FILENAME_UBUNTU_DEFAULT_ISO -O /tmp/$FILENAME_UBUNTU_DEFAULT_ISO
 general:
   artifacts:
     - "tork-ubuntu-ros-14.04-amd64-*.iso"
 test:
   override:
-    - sudo apt-get install p7zip-full
     - 7z x /tmp/$FILENAME_UBUNTU_DEFAULT_ISO -o/tmp/iso
     - mkdir -p ~/tmp/remaster-iso
     - ls -al ~/tmp/
