@@ -78,9 +78,9 @@ sh -c 'echo "deb http://packages.ros.org/ros/ubuntu \`lsb_release -cs\` main" > 
 wget http://packages.ros.org/ros.key -O - | apt-key add -
 apt-get update
 echo "hddtemp hddtemp/daemon boolean false" | sudo debconf-set-selections
-apt-get -y -q install ros-$ROSDISTRO-desktop-full ros-$ROSDISTRO-catkin  ros-$ROSDISTRO-rosbash
-apt-get -y -q install python-wstool python-rosdep python-catkin-tools
-apt-get -y -q install aptitude git ntp emacs vim
+apt-get -y -qq install ros-$ROSDISTRO-desktop-full ros-$ROSDISTRO-catkin  ros-$ROSDISTRO-rosbash
+apt-get -y -qq install python-wstool python-rosdep python-catkin-tools
+apt-get -y -qq install aptitude git ntp emacs vim
 
 # mongodb hack for 14.04
 if [ ${ROSDISTRO} == "indigo" ]; then
@@ -130,62 +130,62 @@ cd -
 chown -R 999.999 /home/ubuntu/catkin_ws
 
 # For turtlebot
-apt-get -y -q install ros-$ROSDISTRO-turtlebot-simulator
-apt-get -y -q install ros-$ROSDISTRO-turtlebot-apps
-apt-get -y -q install ros-$ROSDISTRO-turtlebot
+apt-get -y -qq install ros-$ROSDISTRO-turtlebot-simulator
+apt-get -y -qq install ros-$ROSDISTRO-turtlebot-apps
+apt-get -y -qq install ros-$ROSDISTRO-turtlebot
 # For kobuki
-apt-get -y -q install ros-$ROSDISTRO-kobuki-desktop
+apt-get -y -qq install ros-$ROSDISTRO-kobuki-desktop
 # For devices
-apt-get -y -q install ros-$ROSDISTRO-dynamixel-motor
-apt-get -y -q install ros-$ROSDISTRO-libuvc-camera
-apt-get -y -q install ros-$ROSDISTRO-uvc-camera
-apt-get -y -q install ros-$ROSDISTRO-ar-track-alvar
-apt-get -y -q install ros-$ROSDISTRO-openni2-launch
-apt-get -y -q install ros-$ROSDISTRO-audio-common
+apt-get -y -qq install ros-$ROSDISTRO-dynamixel-motor
+apt-get -y -qq install ros-$ROSDISTRO-libuvc-camera
+apt-get -y -qq install ros-$ROSDISTRO-uvc-camera
+apt-get -y -qq install ros-$ROSDISTRO-ar-track-alvar
+apt-get -y -qq install ros-$ROSDISTRO-openni2-launch
+apt-get -y -qq install ros-$ROSDISTRO-audio-common
 # For moveit
-apt-get -y -q install ros-$ROSDISTRO-moveit-ikfast
-apt-get -y -q install ros-$ROSDISTRO-moveit-full-pr2
+apt-get -y -qq install ros-$ROSDISTRO-moveit-ikfast
+apt-get -y -qq install ros-$ROSDISTRO-moveit-full-pr2
 # qt-build
-apt-get -y -q install ros-$ROSDISTRO-qt-build
+apt-get -y -qq install ros-$ROSDISTRO-qt-build
 # For Denso
-apt-get -y -q install ros-$ROSDISTRO-denso
+apt-get -y -qq install ros-$ROSDISTRO-denso
 # For Nextage
-apt-get -y -q install ros-$ROSDISTRO-rtmros-hironx ros-$ROSDISTRO-rtmros-nextage
+apt-get -y -qq install ros-$ROSDISTRO-rtmros-hironx ros-$ROSDISTRO-rtmros-nextage
 
 if [ ${ROSDISTRO} == "hydro" ]; then
 # RTM, Hiro-NXO
-#apt-get -y -q install ros-$ROSDISTRO-hironx-tutorial
+#apt-get -y -qq install ros-$ROSDISTRO-hironx-tutorial
 # For turtlebot
-apt-get -y -q install ros-$ROSDISTRO-turtlebot-viz
+apt-get -y -qq install ros-$ROSDISTRO-turtlebot-viz
 # For moveit
-apt-get -y -q install ros-$ROSDISTRO-industrial-desktop
+apt-get -y -qq install ros-$ROSDISTRO-industrial-desktop
 
 #rosemacs
-apt-get -y -q install rosemacs-el
+apt-get -y -qq install rosemacs-el
 fi # hydro
 if [ ${ROSDISTRO} == "indigo" ]; then
-apt-get -y -q install ros-$ROSDISTRO-rosemacs
+apt-get -y -qq install ros-$ROSDISTRO-rosemacs
 
 # hakuto
-apt-get -y -q install ros-$ROSDISTRO-hakuto
+apt-get -y -qq install ros-$ROSDISTRO-hakuto
 fi
 
 
 # install chromium
-apt-get -y -q install chromium-browser
+apt-get -y -qq install chromium-browser
 
 # install gnome-open
-apt-get -y -q install libgnome2.0
+apt-get -y -qq install libgnome2.0
 
 # install freecad
-apt-get -y -q install freecad
+apt-get -y -qq install freecad
 
 # for japanese environment
-apt-get -y -q install language-pack-gnome-ja latex-cjk-japanese xfonts-intl-japanese
+apt-get -y -qq install language-pack-gnome-ja latex-cjk-japanese xfonts-intl-japanese
 
 # fix resolve conf (https://github.com/tork-a/live-cd/issues/8)
 rm -fr /etc/resolv.conf
-apt-get -y -q install debconf-utils
+apt-get -y -qq install debconf-utils
 echo "resolvconf resolvconf/linkify-resolvconf boolean true" | debconf-set-selections -
 dpkg-reconfigure -fnoninteractive resolvconf
 
