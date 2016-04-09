@@ -1,0 +1,32 @@
+sudo: required
+dist: trusty
+# Force travis to use its minimal image with default Python settings
+language: generic
+compiler:
+  - gcc
+notifications:
+  email:
+    on_success: always
+    on_failure: always
+    recipients:
+      - 130s@2000.jukuin.keio.ac.jp
+before_script:
+  - FILENAME_UBUNTU_ISO_OFFICIAL=ubuntu-14.04.4-desktop-amd64.iso
+  - sudo apt-get update -qq
+  - sudo apt-get install -y uck
+  - wget -q http://releases.ubuntu.com/14.04/$FILENAME_UBUNTU_ISO_OFFICIAL -O /tmp/$FILENAME_UBUNTU_ISO_OFFICIAL
+  - sudo apt-get install p7zip-full
+  - 7z x /tmp/$FILENAME_UBUNTU_ISO_OFFICIAL -o/tmp/iso
+  - mkdir -p ~/tmp/remaster-iso
+  - ls -al ~/tmp/
+  - sudo mount --bind /tmp/iso ~/tmp/remaster-iso
+script:
+  - ./00-create-cd.sh  --rosdistro indigo 
+#  - ./00-create-cd.sh  --local-repo --rosdistro indigo
+after_script:
+  - export DISPLAY=:0
+#  - ./00-check-cd.sh tork-ubuntu-ros-14.04-amd64-*.iso  # Temporarily disabled since test fails on qemu.
+addons:
+  artifacts:
+    bucket: live-cd
+    s3_region: "us-west-1"  # defaults to "us-east-1"
