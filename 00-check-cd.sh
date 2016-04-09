@@ -17,6 +17,7 @@ q
 "|/sbin/fdisk /tmp/disk.usb; /sbin/mkfs.ext2 -F /tmp/disk.usb
 
 # run qemu
+apt-get -y -qq install qemu-system-x86
 qemu-system-x86_64 -monitor telnet:0.0.0.0:1025,server,nowait -usb -cdrom $iso -boot d -m 4096 -enable-kvm -vga std & # -vnc :70  &
 
 qemupid=$!
