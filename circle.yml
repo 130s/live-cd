@@ -17,6 +17,6 @@ test:
     - ls -al ~/tmp/
     - sudo mount --bind /tmp/iso ~/tmp/remaster-iso
     - ./00-create-cd.sh  --rosdistro indigo
-    - ./00-create-cd.sh  --local-repo --rosdistro indigo
+#    - ./00-create-cd.sh  --local-repo --rosdistro indigo
     - export DISPLAY=:0
-    - sudo ./00-check-cd.sh tork-ubuntu-ros-14.04-amd64-*.iso
+#    - sudo ./00-check-cd.sh tork-ubuntu-ros-14.04-amd64-*.iso
