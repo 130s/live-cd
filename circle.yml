@@ -4,7 +4,7 @@ machine:
 dependencies:
   pre:
     - sudo apt-get update -qq
-    - sudo apt-get install -y uck
+    - sudo apt-get install -y qemu-system-x86 uck
     - wget -q http://releases.ubuntu.com/14.04/$FILENAME_UBUNTU_DEFAULT_ISO -O /tmp/$FILENAME_UBUNTU_DEFAULT_ISO
 general:
   artifacts:
