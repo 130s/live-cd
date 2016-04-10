@@ -6,6 +6,7 @@ dependencies:
     - sudo apt-get update -qq
     - sudo apt-get install -qq -y qemu-system-x86 uck
     - sudo apt-get install -qq -y p7zip-full
+    - sudo apt-get install -qq -y xorriso 
     - wget http://releases.ubuntu.com/14.04/$FILENAME_UBUNTU_DEFAULT_ISO -O /tmp/$FILENAME_UBUNTU_DEFAULT_ISO
 general:
   artifacts:
