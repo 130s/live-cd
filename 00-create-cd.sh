@@ -45,7 +45,7 @@ if [ ! ${DEBUG} ]; then
     if [ ! -e /tmp/${ISO} ]; then
         wget -q http://releases.ubuntu.com/${REV}/${ISO} -O /tmp/${ISO}
     fi
-    sudo uck-remaster-unpack-iso /tmp/${ISO}
+    sudo uck-remaster-unpack-iso -m /tmp/${ISO} ~/tmp
     sudo uck-remaster-unpack-rootfs
 fi
 
