@@ -32,7 +32,7 @@ done
 
 case $ROSDISTRO in
     hydro ) ISO=ubuntu-12.04.5-desktop-amd64.iso;;
-    indigo) ISO=ubuntu-14.04.3-desktop-amd64.iso;;
+    indigo) ISO=ubuntu-14.04.4-desktop-amd64.iso;;
     *) echo "[ERROR] Unsupported ROSDISTRO $ROSDISTRO"; exit;;
 esac
 REV=`echo ${ISO} | sed "s/ubuntu-\([0-9]*.[0-9]*\).*/\\1/"`
@@ -45,8 +45,13 @@ if [ ! ${DEBUG} ]; then
     if [ ! -e /tmp/${ISO} ]; then
         wget -q http://releases.ubuntu.com/${REV}/${ISO} -O /tmp/${ISO}
     fi
-    sudo uck-remaster-unpack-iso /tmp/${ISO}
-    sudo uck-remaster-unpack-rootfs
+## Looks like uck-remaster-unpack-iso requires `umount` to run, which emits the following error on CircleCI.
+##   ```mount: Could not find any loop device. Maybe this kernel does not know
+##       about the loop device? (If so, recompile or `modprobe loop'.)```
+#    sudo uck-remaster-unpack-iso -m /tmp/${ISO} ~/tmp
+#    sudo uck-remaster-unpack-rootfs
+    sudo osirrox -indev /tmp/${ISO} -extract / ~/tmp
+
 fi
 
 # setup custom disk

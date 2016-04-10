@@ -1,0 +1,23 @@
+machine:
+  environment:
+    FILENAME_UBUNTU_DEFAULT_ISO: ubuntu-14.04.4-desktop-amd64.iso
+dependencies:
+  pre:
+    - sudo apt-get update -qq
+    - sudo apt-get install -qq -y qemu-system-x86 uck
+    - sudo apt-get install -qq -y p7zip-full
+    - sudo apt-get install -qq -y xorriso 
+    - wget http://releases.ubuntu.com/14.04/$FILENAME_UBUNTU_DEFAULT_ISO -O /tmp/$FILENAME_UBUNTU_DEFAULT_ISO
+general:
+  artifacts:
+    - "tork-ubuntu-ros-14.04-amd64-*.iso"
+test:
+  override:
+    - 7z x /tmp/$FILENAME_UBUNTU_DEFAULT_ISO -o/tmp/iso
+    - mkdir -p ~/tmp/remaster-iso
+    - ls -al ~/tmp/
+    - sudo mount --bind /tmp/iso ~/tmp/remaster-iso
+    - ./00-create-cd.sh  --rosdistro indigo
+#    - ./00-create-cd.sh  --local-repo --rosdistro indigo
+    - export DISPLAY=:0
+#    - sudo ./00-check-cd.sh tork-ubuntu-ros-14.04-amd64-*.iso
